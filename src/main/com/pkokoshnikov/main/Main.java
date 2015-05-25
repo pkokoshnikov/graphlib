@@ -4,7 +4,9 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.pkokoshnikov.graph.DirectedGraph;
 import com.pkokoshnikov.graph.UndirectedGraph;
-import com.pkokoshnikov.graph.injection.AppInjector;
+import com.pkokoshnikov.graph.factory.DirectedGraphFactory;
+import com.pkokoshnikov.graph.factory.UndirectedGraphFactory;
+import com.pkokoshnikov.graph.injection.DefaultGraphLibraryInjector;
 import com.pkokoshnikov.graph.vertex.NumberVertex;
 
 /**
@@ -13,11 +15,9 @@ import com.pkokoshnikov.graph.vertex.NumberVertex;
  */
 public class Main {
     public static void main(String [] args) {
-        Injector injector = Guice.createInjector(new AppInjector());
-
         System.out.println("It is a simple test program\n");
         System.out.println("Lets try to create directed graph and path with");
-        DirectedGraph directedGraph = injector.getInstance(DirectedGraph.class);
+        DirectedGraph directedGraph = new DirectedGraphFactory().create();
         NumberVertex[] vertices = {new NumberVertex(0), new NumberVertex(1), new NumberVertex(2), new NumberVertex(3),
                 new NumberVertex(4), new NumberVertex(5), new NumberVertex(6), new NumberVertex(7), new NumberVertex(8)};
 
@@ -42,7 +42,7 @@ public class Main {
         System.out.println("We've found path " + directedGraph.getPath(vertices[0], vertices[1]) + "\n");
 
         System.out.println("Lets try to create undirected graph and path with");
-        UndirectedGraph undirectedGraph = injector.getInstance(UndirectedGraph.class);
+        UndirectedGraph undirectedGraph = new UndirectedGraphFactory().create();
 
         undirectedGraph.addVertices(vertices);
         undirectedGraph.addEdge(vertices[1], vertices[0]);

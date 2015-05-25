@@ -11,7 +11,7 @@ import com.pkokoshnikov.graph.edge.DirectedEdge;
 import com.pkokoshnikov.graph.edge.UndirectedEdge;
 
 
-public class AppInjector extends AbstractModule {
+public class DefaultGraphLibraryInjector extends AbstractModule {
 
     @Override
     protected void configure() {
