@@ -30,4 +30,19 @@ public class UndirectedEdge implements Edge{
                 ", v=" + v +
                 '}';
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (getClass() != obj.getClass())
+            return false;
+
+        if (((UndirectedEdge) obj).getU().equals(getU()) && ((UndirectedEdge) obj).getV().equals(getV()) ||
+                ((UndirectedEdge) obj).getU().equals(getV()) && ((UndirectedEdge) obj).getV().equals(getU()))
+            return true;
+
+        return false;
+    }
 }

@@ -3,8 +3,7 @@ package com.pkokoshnikov.graph.data;
 import com.pkokoshnikov.graph.edge.Edge;
 import com.pkokoshnikov.graph.vertex.Vertex;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * User: pako1113
@@ -21,15 +20,14 @@ public abstract class AdjListDataStructure<T extends Edge> implements GraphDataS
     }
 
     @Override
-    public void addVertices(Vertex[] vertices) {
+    public void addVertices(List<? extends Vertex> vertices) {
         for(Vertex vertex : vertices) {
-            this.vertices.add(vertex);
+            if(this.vertices.contains(vertex)) {
+                throw new IllegalArgumentException("This vertex has been already added");
+            }
         }
-    }
 
-    @Override
-    public void addVertices(List<Vertex> vertices) {
-        vertices.addAll(vertices);
+        this.vertices.addAll(vertices);
     }
 
     public void addVertex(Vertex vertex) {
@@ -48,12 +46,23 @@ public abstract class AdjListDataStructure<T extends Edge> implements GraphDataS
         edges.add(edge);
     }
 
+    @Override
+    public void addEdges(List<T> edges) {
+        for(Edge edge : edges) {
+            if(this.edges.contains(edge)) {
+                throw new IllegalArgumentException("This vertex has been already added");
+            }
+        }
+
+        this.edges.addAll(edges);
+    }
+
     public List<Vertex> getVertices() {
-        return vertices;
+        return new ArrayList<Vertex>(vertices);
     }
 
     public List<T> getEdges() {
-        return edges;
+        return new ArrayList<T>(edges);
     }
 
     @Override

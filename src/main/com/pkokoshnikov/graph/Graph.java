@@ -18,11 +18,7 @@ abstract public class Graph<T extends Edge> {
         graphDataStructure.addVertex(vertex);
     }
 
-    public void addVertices(Vertex[] vertices) {
-        graphDataStructure.addVertices(vertices);
-    }
-
-    public void addVertices(List<Vertex> vertices) {
+    public void addVertices(List<? extends Vertex> vertices) {
         graphDataStructure.addVertices(vertices);
     }
 
@@ -30,7 +26,9 @@ abstract public class Graph<T extends Edge> {
         graphDataStructure.addEdge(edge);
     }
 
-    abstract public T addEdge(Vertex u, Vertex v);
+    public void addEdges(List<T> edges) {
+        graphDataStructure.addEdges(edges);
+    }
 
     public List<Vertex> getVertices() {
         return graphDataStructure.getVertices();

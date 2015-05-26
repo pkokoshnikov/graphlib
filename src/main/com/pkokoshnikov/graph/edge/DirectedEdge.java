@@ -30,5 +30,18 @@ public class DirectedEdge implements Edge{
                 ", end=" + end +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (getClass() != obj.getClass())
+            return false;
+
+        if (((DirectedEdge) obj).getStart().equals(getStart()) && ((DirectedEdge) obj).getEnd().equals(getEnd()))
+            return true;
+
+        return false;
+    }
 }
 

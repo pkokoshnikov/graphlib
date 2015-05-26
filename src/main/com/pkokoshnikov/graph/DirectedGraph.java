@@ -16,14 +16,6 @@ public class DirectedGraph extends Graph<DirectedEdge> {
     }
 
     @Override
-    public DirectedEdge addEdge(Vertex u, Vertex v) {
-        DirectedEdge edge = new DirectedEdge(u, v);
-        graphDataStructure.addEdge(edge);
-
-        return edge;
-    }
-
-    @Override
     public String toString() {
         return "DirectedGraph{" +
                 "graphDataStructure=" + graphDataStructure +

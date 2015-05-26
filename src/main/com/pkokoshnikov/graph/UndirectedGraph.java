@@ -16,17 +16,10 @@ public class UndirectedGraph extends Graph<UndirectedEdge> {
     }
 
     @Override
-    public UndirectedEdge addEdge(Vertex u, Vertex v) {
-        UndirectedEdge edge = new UndirectedEdge(u, v);
-        graphDataStructure.addEdge(edge);
-
-        return edge;
-    }
-
-    @Override
     public String toString() {
         return "UndirectedGraph{" +
                 "graphDataStructure=" + graphDataStructure +
                 "}";
     }
+
 }
