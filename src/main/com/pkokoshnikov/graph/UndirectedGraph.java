@@ -3,16 +3,15 @@ package com.pkokoshnikov.graph;
 import com.google.inject.Inject;
 import com.pkokoshnikov.graph.data.GraphDataStructure;
 import com.pkokoshnikov.graph.edge.UndirectedEdge;
-import com.pkokoshnikov.graph.vertex.Vertex;
 
 /**
  * User: pako1113
  * Date: 22.05.15
  */
-public class UndirectedGraph extends Graph<UndirectedEdge> {
+public class UndirectedGraph extends AbstractGraph<UndirectedEdge> {
     @Inject
     public UndirectedGraph(GraphDataStructure<UndirectedEdge> graphDataStructure) {
-        this.graphDataStructure = graphDataStructure;
+        super(graphDataStructure);
     }
 
     @Override

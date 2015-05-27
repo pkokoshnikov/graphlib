@@ -1,24 +1,33 @@
 package com.pkokoshnikov.graph.factory;
 
 import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
-import com.pkokoshnikov.graph.Graph;
-import com.pkokoshnikov.graph.injection.DefaultGraphLibraryInjector;
+import com.google.inject.Module;
+import com.pkokoshnikov.graph.AbstractGraph;
+import com.pkokoshnikov.graph.DirectedGraph;
+
+import com.pkokoshnikov.graph.UndirectedGraph;
+import com.pkokoshnikov.graph.injection.DefaultGraphLibraryModule;
 
 /**
  * User: pako1113
  * Date: 25.05.15
  */
-public abstract class GraphFactory<T extends Graph> {
+public class GraphFactory {
     final protected Injector injector;
 
-    protected GraphFactory(Injector injector) {
-        this.injector = injector;
+    @Inject
+    public GraphFactory(Module module) {
+        this.injector = Guice.createInjector(module);
     }
 
-    protected GraphFactory() {
-        this.injector =  Guice.createInjector(new DefaultGraphLibraryInjector());
+    public GraphFactory() {
+        this.injector =  Guice.createInjector(new DefaultGraphLibraryModule());
     }
 
-    abstract public T create();
+    public <T extends AbstractGraph> T  createGraph(Class<T> type) {
+        return injector.getInstance(type);
+    }
+
 }

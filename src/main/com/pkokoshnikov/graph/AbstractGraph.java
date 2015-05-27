@@ -1,6 +1,8 @@
 package com.pkokoshnikov.graph;
 
+import com.google.inject.Inject;
 import com.pkokoshnikov.graph.data.GraphDataStructure;
+import com.pkokoshnikov.graph.edge.DirectedEdge;
 import com.pkokoshnikov.graph.edge.Edge;
 import com.pkokoshnikov.graph.vertex.Vertex;
 
@@ -11,23 +13,27 @@ import java.util.List;
  * User: pako1113
  * Date: 22.05.15
  */
-abstract public class Graph<T extends Edge> {
+abstract public class AbstractGraph<T extends Edge> {
     protected GraphDataStructure<T> graphDataStructure;
 
-    public void addVertex(Vertex vertex) {
-        graphDataStructure.addVertex(vertex);
+    public AbstractGraph(GraphDataStructure<T> graphDataStructure) {
+        this.graphDataStructure = graphDataStructure;
     }
 
-    public void addVertices(List<? extends Vertex> vertices) {
-        graphDataStructure.addVertices(vertices);
+    public boolean addVertex(Vertex vertex) {
+        return graphDataStructure.addVertex(vertex);
     }
 
-    public void addEdge(T edge) {
-        graphDataStructure.addEdge(edge);
+    public boolean addVertices(List<? extends Vertex> vertices) {
+        return graphDataStructure.addVertices(vertices);
     }
 
-    public void addEdges(List<T> edges) {
-        graphDataStructure.addEdges(edges);
+    public boolean addEdge(T edge) {
+        return graphDataStructure.addEdge(edge);
+    }
+
+    public boolean addEdges(List<T> edges) {
+        return graphDataStructure.addEdges(edges);
     }
 
     public List<Vertex> getVertices() {
@@ -87,7 +93,7 @@ abstract public class Graph<T extends Edge> {
 
     @Override
     public String toString() {
-        return "Graph{" +
+        return "AbstractGraph{" +
                 "graphDataStructure=" + graphDataStructure +
                 "}";
     }

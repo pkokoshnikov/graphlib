@@ -10,7 +10,7 @@ import java.util.List;
  * User: pako1113
  * Date: 25.05.15
  */
-public class DirAdjListDataStructure extends AdjListDataStructure<DirectedEdge> {
+public class DirectedAdjacencyListDataStructure extends AdjacencyListDataStructure<DirectedEdge> {
 
     @Override
     public List<Vertex> getAdjacencyList(Vertex u) {

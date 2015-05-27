@@ -10,7 +10,8 @@ import java.util.List;
  * User: pako1113
  * Date: 25.05.15
  */
-public class UndirAdjListDataStructure extends AdjListDataStructure<UndirectedEdge> {
+public class UndirectedAdjacencyListDataStructure extends AdjacencyListDataStructure<UndirectedEdge> {
+
     @Override
     public List<Vertex> getAdjacencyList(Vertex u) {
         List<Vertex> adjacencyList = new LinkedList<Vertex>();

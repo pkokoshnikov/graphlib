@@ -11,11 +11,11 @@ import java.util.Set;
  * Date: 25.05.15
  */
 public interface GraphDataStructure<T extends Edge> {
-    void addVertices(List<? extends Vertex> vertices);
-    void addVertex(Vertex vertex);
+    boolean addVertices(List<? extends Vertex> vertices);
+    boolean addVertex(Vertex vertex);
 
-    void addEdge(T edge);
-    void addEdges(List<T> edges);
+    boolean addEdge(T edge);
+    boolean addEdges(List<T> edges);
 
     List<Vertex> getVertices();
     List<T> getEdges();
