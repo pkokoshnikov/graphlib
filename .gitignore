@@ -21,6 +21,7 @@ cachedir/
 .classpath
 .project
 *.iml
+.log
 
 # Windows shortcuts
 *.lnk
