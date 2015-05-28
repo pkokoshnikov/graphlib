@@ -32,12 +32,14 @@ public class AbstractGraphTest {
 
     @Test
     public void testAddingVerticesAndEdges() {
-        Vertex[] vertices = new VertexStub[]{new VertexStub(), new VertexStub()};
-        Edge[] edges = new EdgeStub[]{new EdgeStub(), new EdgeStub()};
-        assertTrue(abstractGraph.addVertices(Arrays.asList(vertices)));
-        assertTrue(abstractGraph.addEdges(Arrays.asList(edges)));
-        assertArrayEquals(abstractGraph.getVertices().toArray(), vertices);
-        assertArrayEquals(abstractGraph.getEdges().toArray(), edges);
+        Vertex[] stubVertices = new VertexStub[]{new VertexStub(), new VertexStub()};
+        Edge[] stubEdges = new EdgeStub[]{new EdgeStub(), new EdgeStub()};
+
+        assertTrue(abstractGraph.addVertices(Arrays.asList(stubVertices)));
+        assertTrue(abstractGraph.addEdges(Arrays.asList(stubEdges)));
+
+        assertArrayEquals(abstractGraph.getVertices().toArray(), stubVertices);
+        assertArrayEquals(abstractGraph.getEdges().toArray(), stubEdges);
     }
 
     public static class EdgeStub implements Edge {

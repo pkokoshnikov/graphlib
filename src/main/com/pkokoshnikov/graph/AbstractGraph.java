@@ -3,6 +3,7 @@ package com.pkokoshnikov.graph;
 import com.pkokoshnikov.graph.data.GraphDataStructure;
 import com.pkokoshnikov.graph.edge.Edge;
 import com.pkokoshnikov.graph.vertex.Vertex;
+import org.apache.log4j.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * Abstract class for graphs
  */
 abstract public class AbstractGraph<T extends Edge> {
+    final static Logger logger = Logger.getLogger(AbstractGraph.class);
     protected GraphDataStructure<T> graphDataStructure;
 
     public AbstractGraph(GraphDataStructure<T> graphDataStructure) {
@@ -45,15 +47,17 @@ abstract public class AbstractGraph<T extends Edge> {
      * @param goal vertex
      * @return list of vertex in the path
      */
-    private List<Vertex> DFS(Vertex start, Vertex goal) {
+    private List<Vertex> dfs(Vertex start, Vertex goal) {
+        logger.debug("DFS started , start = " + start + " goal =" + goal);
         LinkedList<Vertex> path = new LinkedList<Vertex>();
         List<Vertex> whiteVertices = new LinkedList<Vertex>(graphDataStructure.getVertices());
 
-        DFS(start, goal, path, whiteVertices);
+        dfs(start, goal, path, whiteVertices);
         if (!path.isEmpty()) {
             path.addFirst(start);
         }
 
+        logger.debug("DFS ended, path = " + path);
         return path;
     }
 
@@ -65,17 +69,20 @@ abstract public class AbstractGraph<T extends Edge> {
      * @param whiteVertices
      * @return
      */
-    private boolean DFS(Vertex start, Vertex goal, LinkedList<Vertex> path, List<Vertex> whiteVertices) {
+    private boolean dfs(Vertex start, Vertex goal, LinkedList<Vertex> path, List<Vertex> whiteVertices) {
         whiteVertices.remove(start);
         List<Vertex> filteredWhiteVertices = filterWhiteVertices(graphDataStructure.getAdjacencyList(start), whiteVertices);
+        logger.debug("white vertices = " + filteredWhiteVertices);
 
         if (start.equals(goal)) {
+            logger.debug("goal found " + goal);
             return true;
         }
 
         for (Vertex vertex : filteredWhiteVertices) {
-            if (DFS(vertex, goal, path, whiteVertices)) {
+            if (dfs(vertex, goal, path, whiteVertices)) {
                 path.addFirst(vertex);
+                logger.debug("vertex has been added to path " + vertex );
                 return true;
             }
         }
@@ -97,7 +104,7 @@ abstract public class AbstractGraph<T extends Edge> {
     }
 
     public List<Vertex> getPath(Vertex start, Vertex goal) {
-        return DFS(start, goal);
+        return dfs(start, goal);
     }
 
     protected List<T> getEdges() {

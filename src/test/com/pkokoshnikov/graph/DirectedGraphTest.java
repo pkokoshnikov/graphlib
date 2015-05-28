@@ -28,6 +28,7 @@ public class DirectedGraphTest {
 
     @Test
     public void testGetPathInDirectedGraph() {
-        assertArrayEquals(new Object[]{VERTICES[0], VERTICES[2], VERTICES[4], VERTICES[6], VERTICES[8], VERTICES[1]}, directedGraph.getPath(VERTICES[0], VERTICES[1]).toArray());
+        Object[] testPath = new Object[]{VERTICES[0], VERTICES[2], VERTICES[4], VERTICES[6], VERTICES[8], VERTICES[1]};
+        assertArrayEquals(directedGraph.getPath(VERTICES[0], VERTICES[1]).toArray(), testPath);
     }
 }

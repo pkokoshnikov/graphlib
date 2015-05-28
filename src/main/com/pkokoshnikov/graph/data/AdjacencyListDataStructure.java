@@ -2,6 +2,7 @@ package com.pkokoshnikov.graph.data;
 
 import com.pkokoshnikov.graph.edge.Edge;
 import com.pkokoshnikov.graph.vertex.Vertex;
+import org.apache.log4j.Logger;
 
 import java.util.*;
 
@@ -11,6 +12,8 @@ import java.util.*;
  * This data structure provides abstract implementation trough adjacency list
  */
 public abstract class AdjacencyListDataStructure<T extends Edge> implements GraphDataStructure<T> {
+    final static Logger logger = Logger.getLogger(AdjacencyListDataStructure.class);
+
     protected List<Vertex> vertices;
     protected List<T> edges;
 
@@ -23,6 +26,7 @@ public abstract class AdjacencyListDataStructure<T extends Edge> implements Grap
     public boolean addVertices(List<? extends Vertex> vertices) {
         for(Vertex vertex : vertices) {
             if(this.vertices.contains(vertex)) {
+                logger.warn("Vertex is already presented in graph, vertex " + vertices);
                 return false;
             }
         }
@@ -34,6 +38,7 @@ public abstract class AdjacencyListDataStructure<T extends Edge> implements Grap
     @Override
     public boolean addVertex(Vertex vertex) {
         if(vertices.contains(vertex)) {
+            logger.warn("Vertex is already presented in graph, vertex " + vertices);
             return false;
         }
 
@@ -44,6 +49,7 @@ public abstract class AdjacencyListDataStructure<T extends Edge> implements Grap
     @Override
     public boolean addEdge(T edge) {
         if(edges.contains(edge)) {
+            logger.warn("Edge is already presented in graph, edge " + edge);
             return false;
         }
 
@@ -55,6 +61,7 @@ public abstract class AdjacencyListDataStructure<T extends Edge> implements Grap
     public boolean addEdges(List<T> edges) {
         for(Edge edge : edges) {
             if(this.edges.contains(edge)) {
+                logger.warn("Edge is already presented in graph, edge " + edge);
                 return false;
             }
         }

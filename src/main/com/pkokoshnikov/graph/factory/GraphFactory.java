@@ -9,6 +9,7 @@ import com.pkokoshnikov.graph.DirectedGraph;
 
 import com.pkokoshnikov.graph.UndirectedGraph;
 import com.pkokoshnikov.graph.injection.DefaultGraphLibraryModule;
+import org.apache.log4j.Logger;
 
 /**
  * User: pako1113
@@ -16,14 +17,15 @@ import com.pkokoshnikov.graph.injection.DefaultGraphLibraryModule;
  * This factory is used for creating graphs
  */
 public class GraphFactory {
+    final static Logger logger = Logger.getLogger(GraphFactory.class);
     final protected Injector injector;
 
     /**
      * Constructor
      * @param module is used for customization of creating data structure for graphs
      */
-    public GraphFactory(Module module) {
-        this.injector = Guice.createInjector(module);
+    public <T extends Module> GraphFactory(Class<T> module) throws IllegalAccessException, InstantiationException {
+        this.injector = Guice.createInjector(module.newInstance());
     }
 
     /**
@@ -34,6 +36,7 @@ public class GraphFactory {
     }
 
     public <T extends AbstractGraph> T  createGraph(Class<T> type) {
+        logger.debug("createGraph method has been called type = " + type.getName());
         return injector.getInstance(type);
     }
 

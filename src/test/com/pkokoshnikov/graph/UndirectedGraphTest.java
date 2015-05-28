@@ -27,7 +27,10 @@ public class UndirectedGraphTest {
 
     @Test
     public void testGetPathInUndirectedGraph() {
-        assertArrayEquals(new Object[]{VERTICES[0], VERTICES[1]}, directedGraph.getPath(VERTICES[0], VERTICES[1]).toArray());
-        assertArrayEquals(new Object[]{VERTICES[0],VERTICES[1], VERTICES[8], VERTICES[6], VERTICES[4], VERTICES[7]}, directedGraph.getPath(VERTICES[0], VERTICES[7]).toArray());
+        Object[] testPath = new Object[]{VERTICES[0], VERTICES[1]};
+        assertArrayEquals(directedGraph.getPath(VERTICES[0], VERTICES[1]).toArray(), testPath);
+
+        testPath = new Object[]{VERTICES[0],VERTICES[1], VERTICES[8], VERTICES[6], VERTICES[4], VERTICES[7]};
+        assertArrayEquals(directedGraph.getPath(VERTICES[0], VERTICES[7]).toArray(), testPath);
     }
 }
