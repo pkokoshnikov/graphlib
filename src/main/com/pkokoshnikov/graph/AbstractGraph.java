@@ -1,8 +1,6 @@
 package com.pkokoshnikov.graph;
 
-import com.google.inject.Inject;
 import com.pkokoshnikov.graph.data.GraphDataStructure;
-import com.pkokoshnikov.graph.edge.DirectedEdge;
 import com.pkokoshnikov.graph.edge.Edge;
 import com.pkokoshnikov.graph.vertex.Vertex;
 
@@ -12,6 +10,7 @@ import java.util.List;
 /**
  * User: pako1113
  * Date: 22.05.15
+ * Abstract class for graphs
  */
 abstract public class AbstractGraph<T extends Edge> {
     protected GraphDataStructure<T> graphDataStructure;
@@ -40,11 +39,17 @@ abstract public class AbstractGraph<T extends Edge> {
         return graphDataStructure.getVertices();
     }
 
-    protected List<Vertex> DFS(Vertex start, Vertex goal) {
+    /**
+     * Initialization part of DFS algorithm
+     * @param start vertex
+     * @param goal vertex
+     * @return list of vertex in the path
+     */
+    private List<Vertex> DFS(Vertex start, Vertex goal) {
         LinkedList<Vertex> path = new LinkedList<Vertex>();
         List<Vertex> whiteVertices = new LinkedList<Vertex>(graphDataStructure.getVertices());
 
-        DFSrec(start, goal, path, whiteVertices);
+        DFS(start, goal, path, whiteVertices);
         if (!path.isEmpty()) {
             path.addFirst(start);
         }
@@ -52,7 +57,15 @@ abstract public class AbstractGraph<T extends Edge> {
         return path;
     }
 
-    protected boolean DFSrec(Vertex start, Vertex goal, LinkedList<Vertex> path, List<Vertex> whiteVertices) {
+    /**
+     * Recursive part of DFS algorithm
+     * @param start vertex
+     * @param goal vertex
+     * @param path is used for storing vertex in path between recursive calls
+     * @param whiteVertices
+     * @return
+     */
+    private boolean DFS(Vertex start, Vertex goal, LinkedList<Vertex> path, List<Vertex> whiteVertices) {
         whiteVertices.remove(start);
         List<Vertex> filteredWhiteVertices = filterWhiteVertices(graphDataStructure.getAdjacencyList(start), whiteVertices);
 
@@ -61,7 +74,7 @@ abstract public class AbstractGraph<T extends Edge> {
         }
 
         for (Vertex vertex : filteredWhiteVertices) {
-            if (DFSrec(vertex, goal, path, whiteVertices)) {
+            if (DFS(vertex, goal, path, whiteVertices)) {
                 path.addFirst(vertex);
                 return true;
             }
@@ -70,7 +83,11 @@ abstract public class AbstractGraph<T extends Edge> {
         return false;
     }
 
-    protected List<Vertex> filterWhiteVertices(List<Vertex> adjacencyList, List<Vertex> whiteVertices) {
+    /**
+     * Filtering white vertices form adjacency list
+     * It's used in DFS algorithm
+     */
+    private List<Vertex> filterWhiteVertices(List<Vertex> adjacencyList, List<Vertex> whiteVertices) {
         LinkedList<Vertex> result = new LinkedList<Vertex>();
         for (Vertex vertex : adjacencyList) {
             if (whiteVertices.contains(vertex)) result.add(vertex);

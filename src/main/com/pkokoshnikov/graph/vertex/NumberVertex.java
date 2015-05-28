@@ -3,6 +3,7 @@ package com.pkokoshnikov.graph.vertex;
 /**
  * User: pako1113
  * Date: 22.05.15
+ * Default implementation of Vertex
  */
 public class NumberVertex implements Vertex{
     int number;

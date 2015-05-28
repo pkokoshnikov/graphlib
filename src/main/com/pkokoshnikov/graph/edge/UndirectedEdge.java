@@ -5,6 +5,7 @@ import com.pkokoshnikov.graph.vertex.Vertex;
 /**
  * User: pako1113
  * Date: 22.05.15
+ * Implementation for undirected graphs
  */
 public class UndirectedEdge implements Edge{
     private Vertex u;

@@ -14,7 +14,15 @@ public class DefaultGraphLibraryModule extends AbstractModule {
 
     @Override
     protected void configure() {
+        bindDirectedDataStructure();
+        bindUndirectedDataStructure();
+    }
+
+    protected void bindDirectedDataStructure() {
         bind(new TypeLiteral<GraphDataStructure<DirectedEdge>>(){}).to(DirectedAdjacencyListDataStructure.class);
+    }
+
+    protected void bindUndirectedDataStructure() {
         bind(new TypeLiteral<GraphDataStructure<UndirectedEdge>>(){}).to(UndirectedAdjacencyListDataStructure.class);
     }
 }

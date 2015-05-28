@@ -13,15 +13,22 @@ import com.pkokoshnikov.graph.injection.DefaultGraphLibraryModule;
 /**
  * User: pako1113
  * Date: 25.05.15
+ * This factory is used for creating graphs
  */
 public class GraphFactory {
     final protected Injector injector;
 
-    @Inject
+    /**
+     * Constructor
+     * @param module is used for customization of creating data structure for graphs
+     */
     public GraphFactory(Module module) {
         this.injector = Guice.createInjector(module);
     }
 
+    /**
+     * Default constructor with default module
+     */
     public GraphFactory() {
         this.injector =  Guice.createInjector(new DefaultGraphLibraryModule());
     }

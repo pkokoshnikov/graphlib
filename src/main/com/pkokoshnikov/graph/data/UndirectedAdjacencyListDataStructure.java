@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * User: pako1113
  * Date: 25.05.15
+ * Implementation of data structure for undirected graphs
  */
 public class UndirectedAdjacencyListDataStructure extends AdjacencyListDataStructure<UndirectedEdge> {
 

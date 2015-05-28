@@ -9,6 +9,7 @@ import java.util.Set;
 /**
  * User: pako1113
  * Date: 25.05.15
+ * Interface for data structure
  */
 public interface GraphDataStructure<T extends Edge> {
     boolean addVertices(List<? extends Vertex> vertices);
@@ -19,5 +20,10 @@ public interface GraphDataStructure<T extends Edge> {
 
     List<Vertex> getVertices();
     List<T> getEdges();
+
+    /**
+     * Get adjacency list for vertex u
+     * @return list of vertices which adjacent with u
+     */
     List<Vertex> getAdjacencyList(Vertex u);
 }
