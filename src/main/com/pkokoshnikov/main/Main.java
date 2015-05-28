@@ -22,7 +22,6 @@ import static com.pkokoshnikov.main.TestData.*;
  * Date: 22.05.15
  */
 public class Main {
-    final static Logger logger = Logger.getLogger(Main.class);
     public static void main(String [] args) {
         System.out.println();
         System.out.println("It is a simple test program\n");
