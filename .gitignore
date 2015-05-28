@@ -16,12 +16,12 @@ $RECYCLE.BIN/
 
 .idea/
 *.class
-cachedir/
-.settings/
 .classpath
 .project
 *.iml
 .log
+target/
+logs/
 
 # Windows shortcuts
 *.lnk
